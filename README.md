@@ -15,3 +15,8 @@ This is a group project about making a home monitoring system. This system will 
 ### Npm Packages
 * Johnny-five
 * Electron
+
+# Team Members #
+* Katherine Billings
+* Karlee Fruin
+* Adam Kearney
