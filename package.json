@@ -1,0 +1,19 @@
+{
+  "name": "node-pixel-example",
+  "version": "1.0.0",
+  "description": "example of led strip using johnny five",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "edison-io": "^0.10.0",
+    "j5-songs": "0.0.9",
+    "johnny-five": "^1.0.0",
+    "node-pixel": "^0.10.1",
+    "twilio": "^3.29.2"
+  }
+}
