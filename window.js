@@ -7,7 +7,6 @@ if(process.argv[2] == "--watch"){
     electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
   })
 }
-
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -21,7 +20,7 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow(
     {width: 800, height: 600}
-  )
+    )
 
   mainWindow.webPreferences = {
     nodeIntegration: true
@@ -35,7 +34,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {

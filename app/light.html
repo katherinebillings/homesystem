@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home Monitoring System</title>
+	<link href="css/reset.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/main.css">
+		<!-- chart.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+
+
+
+	<!-- font awesome link for basic icons -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+
+	<!-- typefaces -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.typekit.net/bzb3aje.css">
+	
+
+
+</head>
+<body>
+	<header class="header">
+	 <div class="logo">
+		<a href="index.html"><img src="images/logo.png" alt="Main Logo"></a>
+	 </div>
+	</header>
+
+
+	<div id="container">
+
+		<div class="backLink">
+		<a href="index.html" class="link">Back</a>
+	    </div>
+		
+		<div class="lightIcon">
+			<img src="images/light.png" alt="lightbulb icon">
+			<h3 class="title">LIGHT</h3>
+		</div>
+
+ 
+
+
+
+
+
+
+
+		
+	<div class="appSlider">
+	  <input type="range" id="sliderBrit" min="0" max="100" step="1">
+	  <h2 class="subTitle">BRIGHTNESS</h2>
+	</div>
+
+
+	<div class="appSlider"> <!-- change the color for this range so the saturation, change in main.css the class to id -->
+	  <input type="range" id="sliderSat" min="0" max="100" step="1">
+	  <h2 class="subTitle">SATURATION</h2>
+	</div>
+
+
+	<div class="appSlider">
+	  <input type="range" id="sliderHue" min="0" max="360" step="1">
+	  <h2 class="subTitle">COLOR</h2>
+	</div>
+
+		 
+
+		
+	
+
+
+		<div class="autoAdjust">
+		
+		<!-- toggle slider (iphone style -->
+		
+		
+		<h3 class="titles">Automatic Adjustment</h3>
+
+			
+		<!-- toggle slider (iphone style -->
+		<div class="options" id="autoSwitch">
+	    <div class="optionSlide"></div>
+	    <div class="sliderSwitch"></div>
+	    </div>
+
+	    <hr class="divider">	
+		<h3 class="titles">Party Mode</h3>
+		<div class="options" id="partySwitch">
+	    <div class="optionSlide"></div>	
+		<div class="sliderSwitch"></div>
+		</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+
+
+		
+
+	</div>
+	<script src="js/main.js"></script>
+	<script src="js/light.js"></script>
+</body>
+</html>

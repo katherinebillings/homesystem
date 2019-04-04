@@ -22,10 +22,11 @@
     "electron": "^4.0.4",
     "johnny-five": "^1.0.0",
     "node-abi": "^2.7.0",
+    "node-pixel": "^0.10.1",
     "serialport": "^7.1.4"
   },
   "devDependencies": {
-    "electron-rebuild": "^1.8.2",
+    "electron-rebuild": "^1.8.4",
     "electron-reload": "^1.4.0"
   }
 }

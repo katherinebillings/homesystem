@@ -1,37 +1,68 @@
-// Johnny-Fife uses stdin, which causes Electron to crash
-// this reroutes stdin, so it can be used
+//toggle slider (iphone style)
 
-var Readable = require("stream").Readable;  
-var util = require("util");  
-util.inherits(MyStream, Readable);  
-function MyStream(opt) {  
-  Readable.call(this, opt);
+		
+//Variables
+var sliderSwitch = document.querySelectorAll(".sliderSwitch");
+var optionsBox = document.querySelectorAll(".options");
+
+var options = document.querySelectorAll(".optionSlide");
+
+//function
+var toggleSlide = e => {
+  for(var i = 0; i < options.length; i++) {
+    if (e.currentTarget === options[i]) {
+      sliderSwitch[i].classList.toggle("on");
+      optionsBox[i].classList.toggle("on");   
+    }
+  }
+};
+    //listener
+    options.forEach(optionSlide => {
+    optionSlide.addEventListener("click", toggleSlide);
+});
+    
+
+
+//language select dropdown
+
+//language select dropdown for settings page
+
+//variables
+/*var button = document.querySelector(".btnLanguages");
+var dropdown = document.querySelector(".dropdown");
+var list = dropdown.querySelectorAll("li a");
+
+
+//functions
+function toggle() {
+  if (dropdown.style.display !== "block") {
+    dropdown.style.display = "block";
+  } else {
+    dropdown.style.display = 'none';
+  }
+};
+
+function closeAll(e) {
+  var check;
+  for(var i = 0; i < list.length; i++) {
+    if(e.target === list[i]) {
+      check = e.target;
+    }
+  }
+  if(e.target.id !== "dropBtn" && check == undefined) {
+    dropdown.style.display = 'none';
+  }
 }
-MyStream.prototype._read = function() {};  
-// hook in our stream
-process.__defineGetter__("stdin", function() {  
-  if (process.__stdin) return process.__stdin;
-  process.__stdin = new MyStream();
-  return process.__stdin;
-});
 
-var five = require("johnny-five");
-var board = new five.Board({
-  repl: false // does not work with browser console
-});
+  //listeners
+  button.addEventListener("click",toggle,false);
+  window.addEventListener("click", closeAll, false);*/
 
-board.on("ready", function() {
-  console.log('%cArduino ready, click button to toggle onboard LED.', 'color: green;');
 
-  // Create a standard `led` component instance
-  var led = new five.Led(13);
-  var button = document.querySelector("#button")
 
-  // toggle onboard led using button element
-  button.addEventListener("click", function(){
-        led.toggle();
-  })
 
-  
 
-});
+
+
+
+
