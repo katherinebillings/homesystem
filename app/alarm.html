@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home Monitoring System</title>
+	<link href="css/reset.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/main.css">
+	<!-- font awesome link for basic icons -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+
+	<!-- typefaces -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.typekit.net/bzb3aje.css">
+	
+
+
+</head>
+<body>
+	<header class="header">
+	 <div class="logo">
+		<a href="index.html"><img src="images/logo.png" alt="Main Logo"></a>
+	 </div>
+	</header>
+
+
+	<div id="container">
+
+		<div class="backLink">
+		<a href="index.html" class="link">Back</a>
+	    </div>
+
+		
+		
+
+		<div class="alarmIcon">
+			<img src="images/alarm.png" alt="alert icon" class="alarmI">
+			<h3 class="titleAlert">ALERTS</h3>
+		</div>
+
+
+
+
+
+
+	<!-- clock switch to set time -->
+	<div class="AlarmClock">
+  	<div class="alarm">
+  		<h5>Alarm Clock</h5><br>
+    
+    <h2 id="clock" class="clock"></h2>
+    
+
+
+
+    <!-- input values select dropdown -->
+    <div class="selectValues">
+    <select id="hours"></select>
+    <select id="minutes"></select>
+    <!--<select id="seconds"></select>-->
+    </div>
+   
+
+	<!-- time of day AM / PM -->
+    <select id="timeOfDay">
+    <option value="AM">AM</option>
+    <option value="PM">PM</option>
+    </select>
+
+    
+    <!-- buttons -->
+    <div class="alarmClockbuttons">
+    <!-- snooze button for 5 mins for the user -->
+    <button id="snoozeBtn" class="hidden">Snooze</button>
+    
+
+
+
+
+
+
+
+
+
+
+
+   
+    </div>
+
+
+
+    </div>
+    </div>
+	
+
+
+	
+	<div class="timeOfDay">
+	<button class="btn active" id="daily">DAILY</button>
+	<button class="btn" id="weekday">WEEKDAY</button>
+	<div id="weekdays">
+		<input type="checkbox">S
+		<input type="checkbox">M
+		<input type="checkbox">T
+		<input type="checkbox">W
+		<input type="checkbox">T
+		<input type="checkbox">F
+		<input type="checkbox">S
+	</div>
+	<button class="btn" id="once">ONCE</button>
+	</div>
+
+	 <!-- set the alarm -->
+    <button id="setTheAlarm">Set Alarm</button>
+		
+	<!--	<div class="setAlarm">
+		<button class="set">SET ALARM</button>
+	    </div>
+	 -->
+
+	</div>
+
+
+	<!-- alarm clock would'nt work in the main.js as I think there were so many functions running, so I created another js file to separate it. -->
+	<!-- main js file -->
+	<script src="js/main.js"></script>
+	<script src="js/alarm.js"></script>
+</body>
+</html>

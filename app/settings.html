@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home Monitoring System</title>
+	<link href="css/reset.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/main.css">
+	<!-- font awesome link for basic icons -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+
+	<!-- typefaces -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.typekit.net/bzb3aje.css">
+	
+
+
+</head>
+<body>
+	<header class="header">
+	 <div class="logo">
+		<a href="index.html"><img src="images/logo.png" alt="Main Logo"></a>
+	 </div>
+	</header>
+
+
+	<div id="container">
+
+
+		<div class="backLink">
+		<a href="index.html" class="link">Back</a>
+	    </div>
+
+		
+		<div class="alarmIcon">
+			<h3><i class="fas fa-alarm-clock"></i></h3>
+			<img src="images/settings.png" alt="settings icon" class="settingsI">
+			<h3 class="titleSettings">SETTINGS</h3>
+		</div>
+
+		
+		<div class="autoAdjust">
+		<h3 class="titles">Black & White Mode</h3>
+		<!-- toggle slider (iphone style -->
+		<div class="options">
+	    <div class="optionSlide"></div>	
+		<div class="sliderSwitch" id="partySwitch"></div>
+		</div>
+		<hr class="divider">	
+		<h3 class="titles">Increase Font Size</h3>
+
+			
+		<!-- toggle slider (iphone style -->
+		<div class="options">
+	    <div class="optionSlide"></div>	
+		<div class="sliderSwitch" id="partySwitch"></div>
+		</div>
+
+		
+		</div>
+
+		
+
+		 
+		<!-- choose language dropdown -->
+
+		<div class="languages">
+        <button class="btnLanguages" id="dropBtn">Choose Language
+        <span class="btn-arrow"></span>
+       </button>
+       <ul class="dropdown">
+	      <li><a href="#">Chinese</a></li>
+	      <li><a href="#">Francais</a></li>
+	      <li><a href="#">English</a></li>
+	      <li><a href="#">Spanish</a></li>
+	      <li><a href="#">Portuguese</a></li>
+	      <li><a href="#">Russian</a></li>
+	      <li><a href="#">Japanese</a></li>
+       </ul>
+      </div>
+
+
+      <!-- enter in your phone number so you can recieve SMS Text Message alerts on your mobile. -->
+      
+		<div class="change">
+			<input type="text" id="phone" name="change" placeholder="Enter Phone Number" class="btnInputAlerts">
+			<input type="submit" id="submit" value="Save" class="btnInputAlerts">
+		</div>
+
+
+
+	</div>
+
+	<script src="js/main.js"></script>
+</body>
+</html>
