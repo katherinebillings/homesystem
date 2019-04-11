@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/main.css">
 		<!-- chart.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 
 
@@ -29,7 +30,7 @@
 <body>
 	<header class="header">
 	 <div class="logo">
-		<a href="index.html"><img src="img/logo.svg" alt="Main Logo"></a>
+		<a href="index.html"><img src="images/logo.svg" alt="Main Logo"></a>
 	 </div>
 	</header>
 
@@ -55,11 +56,15 @@
 		<!-- charts.js -->
 		<h1 class="tempHistory">History</h1> <!-- ///////////FINISH THIS/////////////////////////////// -->
 
+		<!--
 		<div style="width:50%">
 			<h2 class="tempH">Temperature</h2>
 			<canvas id="chart"></canvas>
-		</div>	
-
+		</div>
+		-->	
+		<div class="wrapper">
+			<canvas id="history"></canvas>
+		</div>
 
 
 
@@ -74,9 +79,9 @@
 
 		
 		<div class="autoAdjust">
-		<h3 class="titles">Fahrenheit / Celcius</h3>
+		<h3 class="titles">Celcius/Fahrenheit</h3>
 		<!-- toggle slider (iphone style -->
-		<div class="options">
+		<div class="options" id="scaleBtn">
 	    <div class="optionSlide"></div>	
 		<div class="sliderSwitch"></div>
 	    </div>
@@ -85,7 +90,7 @@
 
 			
 		<!-- toggle slider (iphone style -->
-	    <div class="options">
+	    <div class="options" id="tempBtn">
 	    <div class="optionSlide"></div>	
 		<div class="sliderSwitch"></div>
 	    </div>
@@ -93,15 +98,21 @@
 
 
 		<div class="change">
-			<input type="text" name="change" placeholder="Enter Change City" class="btnInput">
+			<input type="text" name="change" placeholder="Enter Change City" class="btnInput" id="city">
+			<select id="country">
+				<option value="ca">Canada</option>
+				<option value="um">United States</option>
+				<option value="gb">England</option>
+				<option value="mx">Mexico</option>
+			</select>
+			<input type="submit" id="submit" name="change" value="Submit" class="btnInput">
 		</div>
 
 
 		
 		
 	</div>
-	
-	<script src="js/charts.js"></script>
+
 	<script src="js/main.js"></script>
 </body>
 </html>

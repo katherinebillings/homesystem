@@ -34,7 +34,8 @@ opts.port = process.argv[2] || "";
   var autoBtn = document.querySelector("#autoSwitch .optionSlide");
   var party = document.querySelector("#partySwitch .sliderSwitch");
   var partyBtn = document.querySelector("#partySwitch .optionSlide");
-  
+  var partySwitch = "off";
+  var fps = 40;
 
   function createRemap(inMin, inMax, outMin, outMax) { 
     return function remaper(x) { 
@@ -43,8 +44,6 @@ opts.port = process.argv[2] || "";
   }
 
   board.on("ready", function() {
-    
-    
 
     var photoresistor = new five.Sensor({
       pin: "A2",
@@ -60,12 +59,15 @@ opts.port = process.argv[2] || "";
     });
 
     strip.on("ready", function() {
-      
+      console.log("Strip ready, let's go");
       partyBtn.addEventListener("click", partySwitch, false);
 
       function partySwitch() {
-        autoBtn.addEventListener("click", lightSwitch, false);
+        
         if(party.classList.contains("on")) {
+          partySwitch = "on";
+          strip.clear();
+          strip.off();
           var colors = ["red", "green", "blue", "yellow", "cyan", "magenta", "white"];
           var current_colors = [0,1,2,3,4];
           var current_pos = [0,1,2,3,4];
@@ -77,10 +79,28 @@ opts.port = process.argv[2] || "";
               }
               strip.pixel(current_pos[i]).color(colors[current_colors[i]]);
           }
-          strip.show();
+          if(partySwitch == "on") {
+            strip.show();
+          }
           }, 1000/fps);
         } else {
-        function lightSwitch() {
+          partySwitch = "off";
+          strip.clear();
+          strip.off();
+          autoBtn.addEventListener("click", lightSwitch, false);
+      hueSlid.addEventListener("input", function() {
+        hue = hueSlid.value;
+        colorChange(hue, sat, brit);
+      }, false);
+      
+      satSlid.addEventListener("input", function() {
+        sat = satSlid.value;
+        colorChange(hue, sat, brit);
+      }, false);
+    }
+
+  }  
+  function lightSwitch() {
           photoresistor.on("data", function() {
             var sensorInfo = this.value;
             if(sensorInfo < 100) {
@@ -91,8 +111,9 @@ opts.port = process.argv[2] || "";
               var remap = createRemap(100, 1005, 1, 100);
               brit = remap(sensorInfo);
             }
-            console.log(brit);
-            if(auto.classList.contains("on")) {
+            //console.log(brit);
+            if(partySwitch == "off") {
+              if(auto.classList.contains("on")) {
               colorChange(hue, sat, brit);
             } else {
               brit = britSlid.value;
@@ -100,29 +121,13 @@ opts.port = process.argv[2] || "";
               britSlid.addEventListener("input", function() {
                 brit = britSlid.value;
                 colorChange(hue, sat, brit);
+
               }, false);
             }
-            
+            }
           });
-        console.log(auto + " " + brit);
       }
-
-      lightSwitch();
-      
-      hueSlid.addEventListener("input", function() {
-        hue = hueSlid.value;
-        colorChange(hue, sat, brit);
-      }, false);
-      
-      satSlid.addEventListener("input", function() {
-        sat = satSlid.value;
-        colorChange(hue, sat, brit);
-      }, false);
-
-
-      console.log("Strip ready, let's go");
-
-      function colorChange(hue, sat, brit) {
+            function colorChange(hue, sat, brit) {
         var h = hue;
         var s = sat / 100;
         var v = brit / 100;
@@ -131,7 +136,7 @@ opts.port = process.argv[2] || "";
         strip.show();
       }
   
-      
+      lightSwitch();
     
       function hsvToRgb(h, s, v) {
       
@@ -163,10 +168,7 @@ opts.port = process.argv[2] || "";
         var Blue = Math.round((b + m) * 255);
         return `rgb(${Red}, ${Green}, ${Blue})`;
       }
-    }
-
-  }    
-      
+     partySwitch();
   });
 
   });

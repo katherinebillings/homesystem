@@ -1,20 +1,34 @@
 //Ajax call to PHP and get data to return in charts.js format. 
+var Readable = require("stream").Readable;
+var util = require("util");
+var five = require('johnny-five');
+util.inherits(MyStream, Readable);
+function MyStream(opt) {
+  Readable.call(this, opt);
+}
+MyStream.prototype._read = function() {};
+// hook in our stream
+process.__defineGetter__("stdin", function() {
+  if (process.__stdin) return process.__stdin;
+  process.__stdin = new MyStream();
+  return process.__stdin;
+});
 
+
+var opts = {};
+opts.port = process.argv[2] || "";
+
+  var board = new five.Board({
+  repl: false // does not work with browser console
+});
 
 
 //global vars
 
 var dataRequest;
 var time = 1000*60*60*6;
-var time2 = 1000 * 60;
 
-setInterval(test, time);
 setInterval(createRequest, time);
-
-
-function test() {
-  console.log("test");
-}
 
 
 
@@ -32,11 +46,25 @@ function createRequest(){
     }
     else if(request===null){
       alert("Your browser does not support Ajax");
-    } 
-    var tempC = 15;
-    var tempF = 55;
+    }
+    var tempC;
+    var tempF;
+    var formdata;
 
-    var formdata = "tempC="+tempC+"&tempF="+tempF;
+    board.on("ready", function() {
+      var temperature = new five.Thermometer({
+        controller: "LM35",
+        pin: "A0",
+        freq: 500
+      });
+
+      temperature.on("change", function() {
+        tempC = this.celsius;
+        tempF = this.fahrenheit;
+      });
+    });
+    
+    formdata = "tempC="+tempC+"&tempF="+tempF;
 
     //create variables to send to php file. 
     var url ="historyDBsend.php"; //this is the php file that will send the sensor data to the db    from the html/js file it’s feeding from.

@@ -1,184 +1,114 @@
 //Ajax call to PHP and get data to return in charts.js format. 
 
+console.log("charts.js called")
 
+var five = require('johnny-five');
+var pixel = require("node-pixel");
+var Readable = require("stream").Readable;  
+var util = require("util");
+var axios = require('axios');
+util.inherits(MyStream, Readable);  
+function MyStream(opt) {  
+  Readable.call(this, opt);
+}
+MyStream.prototype._read = function() {};  
+// hook in our stream
+process.__defineGetter__("stdin", function() {  
+  if (process.__stdin) return process.__stdin;
+  process.__stdin = new MyStream();
+  return process.__stdin;
+});
+
+
+var opts = {};
+opts.port = process.argv[2] || "";
+
+  var board = new five.Board({
+  repl: false // does not work with browser console
+});
 
 //global vars
+var scaleSwitch = document.querySelector("#scaleBtn .sliderSwitch");
+var scaleBtn = document.querySelector("#scaleBtn .optionSlide");
+var scale = "celsius";
+var areaSwitch = document.querySelector("#tempBtn .sliderSwitch");
+var areaBtn = document.querySelector("#tempBtn .optionSlide");
+var area = "room";
+var tempTxt = document.querySelector(".tempH");
+var scaleCheck = false;
+var temp = "metric";
+
+board.on("ready", function() {
+  var temperature = new five.Thermometer({
+        controller: "LM35",
+        pin: "A0",
+        freq: 500
+      });
+
+  function tempSwitch() {
+    temperature.on("change", function() {
+      if(scaleSwitch.classList.contains("on")) {
+        scale = "imperial";
+        scaleCheck = true;
+      } else {
+        scale = "metric";
+        scaleCheck = true;
+      }
+      if(scaleCheck) {
+        if(areaSwitch.classList.contains("on")) {
+          var city = "London";
+          var country = "ca";
+          axios.get('http://api.openweathermap.org/data/2.5/weather', {
+            params: {
+              q: `${city},${country}`,
+              APPID: "62aade36c70bae588c2501d17cd9e8eb",
+              units: `${scale}`
+            }
+          })
+          .then(function (response) {
+            var data = response.data;
+            console.log(data.weather[0].icon);
+            var tempNum = Math.round(data.main.temp);
+            var tempNum = tempNum.toString();
+            if(tempNum.length === 2) {
+              tempNum = " " + tempNum;
+            } else if(tempNum.length === 1) {
+              tempNum = "  " + tempNum;
+            }
+            if(scale === "metric") {
+              temp = tempNum + "°C";
+            } else {
+              temp = tempNum + "°F";
+            }
+            //lcdTest();
+            return temp;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });   
+        } else {
+          if(scale === "metric") {
+            temp = this.celsius + "°C";
+          }else{
+            temp = this.fahrenheit + "°F";
+          }
+        }
+      }
+      
+      tempTxt.innerHTML = "Temperature " + temp;
+    });
+  }
+
+  tempSwitch();
+
+  areaBtn.addEventListener("click", tempSwitch, false);
+  scaleBtn.addEventListener("click", tempSwitch, false);
+});
+
+
+
+
 
 //create XHMLHttpRequest object
-
-function createRequest(){
-  var request;
-
-  //see if request has been made.
-  
-  if(window.XMLHttpRequest){
-    request = new XMLHttpRequest();
-    }else if(window.ActiveXObject) {
-      request = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    else if(request===null){
-      alert("Your browser does not support Ajax");
-    } 
-    
-
-
-    //create variables to send to php file. 
-    var url ="historyDB.php"; //this is the php file that will send the sensor data to the db    from the html/js file it’s feeding from.
-
-    //html div name that is assigned the sensor data id from the js file.
-    //var tempValue = document.querySelector("#tempValue");
-        
-    request.onreadystatechange = function(){
-      if(request.readyState === 4 && request.status===200){
-
-        var returnData = request.responseText;
-        console.log(returnData);//returnData is my data that i need to put into a chart.js. create the chart and the hook it up to returnData.
-
-      }     
-
-    }
-    request.open("GET", url, true);
-    request.send(null); 
-
-
-
-    //send data to php and wait for response to update status div.
-    //document.querySelector("#tempValue").innerHTML = "Displaying History…";
-
-
-
-
-
-
-
-
-
-    //html div name that is assigned the sensor data id from the js file.
-    //var tempValue = document.querySelector("#tempValue");
-    
-    
-    
-
-    
-
-    function saveTempData(){
-      console.log("function has been fired"); //check to see if function is working.
-
-      console.log(e.currentTarget.value); //will pull data where sensors is feeding back.
-
-      
-  
-    }
-
-
-
-
-
-
-
-
-
-
-}
-
-createRequest();
-
-
-
-
-
-
-
-
-
-
-
-  //temperature charts.js
-
-  /*var ctx = document.querySelector("#tempChart");
-  var tempChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-    labels: [],
-    datasets: [
-    {
-      label: 'Temperature',
-      data: [5,2],
-      backgroundColor: [
-        '#37DFF2',
-        '#ccc'
-        
-      ],
-      borderWidth: 0
-    }]
-    },
-    options: {
-    cutoutPercentage: 89,//thickness of the circle.
-    responsive: false,
-    onClick: function($event, arr) {
-      console.log($event, arr);
-      arr[0]._model.borderWidth = 4;
-      arr[0]._view.borderWidth = 4;
-      console.log($event, arr);
-      tempChart.update();
-      tempChart.draw();
-
-    }
-  }
-});
-*/
-
-
-
-
-
-/*
-//chart
-var ctx = document.querySelector("#chart");
-var data = {
-  datasets:[{
-    data: [<?php echo $temps ?>],
-    background: 'transparent',
-    borderColor: "#333",
-    borderWidth: 5,
-    label: 'Temperature'
-  },{
-    data: [<?php echo $months; ?>],
-    background: 'transparent',
-    borderColor: '#1470A8',
-    borderWidth: 5,
-    label: 'Months'
-  }],
-  labels: [
-    <?php echo $dates ?>
-  ]
-};
-
-var temperatureHistory = new chart(ctx, {
-  //type of chart
-  type: 'line',
-  //data
-  data: data,
-  //config options
-  options:{
-    legend: {},
-    tooltips: {
-
-    },
-    scales: {
-
-    }
-  }
-});
-
-*/
-
-
-
-
-
-
-
-//line chart to display sensor data to be sent to db with ajax call.
 
 

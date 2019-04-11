@@ -10,20 +10,14 @@
 	<!-- chart.js -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
-
-
 	<!-- font awesome link for basic icons -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-
 
 	<!-- typefaces -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://use.typekit.net/bzb3aje.css">
 	
-
-
 </head>
 <body>
 	<header class="header">
@@ -34,88 +28,53 @@
 
 
 	<div id="container">
+	<h2 class="hidden">Full Screen Navigation</h2>
 		
 	<section class="menuContainer">
 		
+<a href="alarm.html" id="dateBox">
 		<div class="menu">
-		    <h3 class="menuTitles">Weather</h3>
+			<h3 class="menuTitles">DATE & TIME</h3>
+			<h3 class="menuTitlesD" id="time"></h3>
+			<h3 class="menuTitlesD" id="date"></h3>
+			<h5 class="add">+ ADD ALARM</h5>
 		</div>
-	    
-	    
+		</a>
+
+		<a href="route.html">
 		<div class="menu">
-			<h3 class="menuTitles">Date</h3>
-		</div>
-	    
-	    
-		<div class="menu">
-			<h3 class="menuTitles">Current Time</h3>
-		</div>
-	    
-	    <a href="#">
-		<div class="menu">
-			<h3 class="menuTitles">Lamp</h3>
+			<h3 class="menuTitles">ROUTE</h3>
+			<h5 class="add">+ CHANGE ROUTE</h5>
 		</div>
 	    </a>
+
+		<a href="temp.html">
+		<div class="menu" id="weather">
+		    <h3 class="menuTitles">WEATHER</h3>
+		    <img src="http://openweathermap.org/img/w/04d.png" alt="Weather" id="wIcon">
+		    <h5 class="add">+ CHANGE CITY</h5>
+		</div>
+		</a>
+	    
+	     
+	  
+	  
 	    <a href="light.html">
 		<div class="menu">
 			<img src="images/light.png" alt="light icon" class="icons">
-			<h3 class="menuTitles">Light</h3>
+			<h3 class="menuTitles">LIGHT</h3>
 		</div>
 	    </a>
-	    <a href="route.html">
-		<div class="menu">
-			<h3 class="menuTitles">Route</h3>
-			<h5 class="add">CHANGE ROUTE</h5>
-		</div>
-	    </a>
-	    <a href="temp.html">
-		<div class="menu">
-			<img src="images/temp.png" alt="temperature icon" class="iconsTemp">
-			<h3 class="menuTitles">Temperature</h3>
-			<h5 class="add">CHANGE CITY</h5>
-		</div>
-	    </a>
-	    <a href="alerts.html">
-		<div class="menu">
-			<img src="images/alerts.png" alt="alerts icon" class="icons">
-			<h3 class="menuTitles">Alerts</h3>
-		</div>
-	    </a>
-	    <a href="alarm.html">
-		<div class="menu">
-			<img src="images/clock.png" alt="alerts icon" class="icons">
-			<h3 class="menuTitles">Clock</h3>
-		</div>
-	    </a>
+	    
+
+
 	    <a href="settings.html">
 		<div class="menu">
 			<img src="images/settings.png" alt="settings icon" class="icons">
-			<h3 class="menuTitles">Settings</h3>
+			<h3 class="menuTitles">SETTINGS</h3>
 		</div>
 	    </a>
 	</section>
-
-	
-	<hr class="divider">
-
-	<section class="notificationsArea">
-		<div class="notif">
-			<h1 class="titleSect">Alerts & Notifications</h1>
-		</div>
-		<div class="alertMsg">
-			<img src="images/loc.png" alt="route icon" class="locationIcon">
-			<h5></h5>
-		</div>
-		<hr>
-		<div class="alertMsg">
-			<img src="images/temp.png" alt="route icon" class="tempIcon">
-			<h5></h5>
-		</div>
-		
-	</section>
-
-
-		 
 
 
 

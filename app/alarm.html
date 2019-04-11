@@ -100,8 +100,17 @@
 
 	
 	<div class="timeOfDay">
-	<button class="btn" id="daily">DAILY</button>
+	<button class="btn active" id="daily">DAILY</button>
 	<button class="btn" id="weekday">WEEKDAY</button>
+	<div id="weekdays">
+		<input type="checkbox">S
+		<input type="checkbox">M
+		<input type="checkbox">T
+		<input type="checkbox">W
+		<input type="checkbox">T
+		<input type="checkbox">F
+		<input type="checkbox">S
+	</div>
 	<button class="btn" id="once">ONCE</button>
 	</div>
 
@@ -117,8 +126,8 @@
 
 
 	<!-- alarm clock would'nt work in the main.js as I think there were so many functions running, so I created another js file to separate it. -->
-	<script src="js/alarm.js"></script>
 	<!-- main js file -->
 	<script src="js/main.js"></script>
+	<script src="js/alarm.js"></script>
 </body>
 </html>
